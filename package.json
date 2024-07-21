@@ -1,0 +1,8 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "chai": "^4.4.1",
+    "ethers": "^5.7.2"
+  }
+}

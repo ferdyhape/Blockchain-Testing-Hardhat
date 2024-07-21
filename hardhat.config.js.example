@@ -1,0 +1,18 @@
+require("@nomiclabs/hardhat-ethers");
+
+module.exports = {
+  defaultNetwork: "private",
+  networks: {
+    hardhat: {},
+    private: {
+      url: "http://127.0.0.1:8545",
+      chainId: 1234567,
+      gas: 8000000,
+      gasPrice: 20000000000,
+      gasLimit: 8000000,
+      accounts: ["PRIVATE_KEY"],
+      from: "PUBLIC_KEY",
+    },
+  },
+  solidity: "0.8.16",
+};
