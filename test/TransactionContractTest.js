@@ -13,7 +13,7 @@ describe("TransactionContract", function () {
     await transactionContract.deployed();
   });
 
-  it("should add a transaction", async function () {
+  it("harus dapat menambahkan transaksi", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -35,12 +35,12 @@ describe("TransactionContract", function () {
     expect(transaction.orderType).to.equal("order");
     expect(transaction.paymentStatus).to.equal("pending");
     expect(transaction.status).to.equal("new");
-    expect(transaction.quantity.eq(ethers.BigNumber.from(10))).to.be.true; // Menggunakan .eq()
-    expect(transaction.totalPrice.eq(ethers.utils.parseEther("1"))).to.be.true; // Menggunakan .eq()
+    expect(transaction.quantity.eq(ethers.BigNumber.from(10))).to.be.true;
+    expect(transaction.totalPrice.eq(ethers.utils.parseEther("1"))).to.be.true;
     expect(transaction.createdAt).to.equal("2023-07-23");
   });
 
-  it("should update the status of a transaction", async function () {
+  it("harus dapat memperbarui status transaksi", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -63,7 +63,7 @@ describe("TransactionContract", function () {
     expect(transaction.status).to.equal("completed");
   });
 
-  it("should update the payment status of a transaction", async function () {
+  it("harus dapat memperbarui status pembayaran transaksi", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -86,7 +86,7 @@ describe("TransactionContract", function () {
     expect(transaction.paymentStatus).to.equal("paid");
   });
 
-  it("should update the payment proof of a transaction", async function () {
+  it("harus dapat memperbarui bukti pembayaran transaksi", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -110,7 +110,7 @@ describe("TransactionContract", function () {
     expect(transaction.paymentStatus).to.equal("paid");
   });
 
-  it("should get transactions by fromToUserId", async function () {
+  it("harus dapat mendapatkan transaksi berdasarkan fromToUserId", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -147,7 +147,7 @@ describe("TransactionContract", function () {
     expect(transactions[1].transactionCode).to.equal("tx124");
   });
 
-  it("should get transactions by campaignId", async function () {
+  it("harus dapat mendapatkan transaksi berdasarkan campaignId", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -183,7 +183,7 @@ describe("TransactionContract", function () {
     expect(transactions[0].transactionCode).to.equal("tx123");
   });
 
-  it("should get the count of transactions", async function () {
+  it("harus dapat mendapatkan jumlah transaksi", async function () {
     await transactionContract
       .addTransaction(
         "tx123",
@@ -213,24 +213,6 @@ describe("TransactionContract", function () {
       .then((tx) => tx.wait());
 
     const count = await transactionContract.getCountTransaction();
-    expect(count.eq(ethers.BigNumber.from(2))).to.be.true; // Menggunakan .eq()
+    expect(count.eq(ethers.BigNumber.from(2))).to.be.true;
   });
-
-  // it("should fail to update the status of a non-existent transaction", async function () {
-  //   await expect(
-  //     transactionContract.updateStatus("nonexistent", "completed")
-  //   ).to.be.revertedWith("Transaction does not exist");
-  // });
-
-  // it("should fail to update the payment status of a non-existent transaction", async function () {
-  //   await expect(
-  //     transactionContract.updatePaymentStatus("nonexistent", "paid")
-  //   ).to.be.revertedWith("Transaction does not exist");
-  // });
-
-  // it("should fail to update the payment proof of a non-existent transaction", async function () {
-  //   await expect(
-  //     transactionContract.updatePaymentProof("nonexistent", "proof123")
-  //   ).to.be.revertedWith("Transaction does not exist");
-  // });
 });
